@@ -1,0 +1,57 @@
+/* link */
+.body-article a, .body-comunicato a, .sommario-rivista a{
+  text-decoration: underline !important;
+}
+
+.abbonamento_form_fields .row{
+  margin-bottom: 7px;
+}
+
+.abbonati{
+  background-color: $brand-primary;
+  color: #FFFFFF;
+}
+
+//form di ricerca -----------------------
+
+.li-search-form{
+    width: 300px;
+}
+
+.search-form{
+  margin-top: -24px;
+  position: absolute;
+  width: 295px;
+  background-color: #73B9FF;
+  height: 65px;
+  padding-top: 19px;
+  box-shadow: 0 3px 2px -2px #999999;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.top-search-text{
+  width: 150px !important;
+}
+
+.mobile-search{
+  display: none;
+}
+
+.ufficiostampa-pagelayout-container{
+  color: $black;
+}
+
+/*modifiche per versione mobile*/
+@media only screen and (max-width: 768px){
+  #header .header-top #topsearch{display: none; !important}
+  .mobile-search {display: block;  right: -7px}
+  .img-mobile{width: 90px; margin-top: -25px;  float: left;}
+  .header-expo{display: none;}
+  .footer_banner{display: none;}
+  .owl-buttons{margin-top: -5px}
+  .owl-prev i{margin: 8px;}
+  .owl-next i{margin: 8px;}
+  .geo_located_content{display: none;}
+}
