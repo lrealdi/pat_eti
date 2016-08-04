@@ -47,9 +47,12 @@
 	<div class="tab-content">
 		<div class="tab-pane" id="tab-impresa">
 		    <div class="col-xs-5">
+		    	<!-- {$node.data_map.pdf_preview.content|attribute(show)} -->
+		    	<br/>
 		        <a href={concat("content/download/",$pdf_obj.id,"/",$pdf_obj.data_map.pdf.id,"/file/",$pdf_obj.data_map.pdf.content.original_filename)|ezurl} target="_blank">
-		            <img src={'icona_pdf.gif'|ezimage(double)} alt="Pdf icon" align="center" style="border: 1px solid #73B9FF"/>&nbsp;Scarica il modulo pdf 
-<!--		            <img src={$node.data_map.pdf_preview.content[original].full_path|ezroot()} width="450" height="600" style="border: 1px solid #73B9FF"/> -->
+		            {*<!-- <img src={'icona_pdf.gif'|ezimage(double)} alt="Pdf icon" align="center" style="border: 1px solid #73B9FF"/>&nbsp;Scarica il modulo pdf --> 
+		            <!-- <img src={'pdf-image.png'|ezimage(double)} alt="Pdf icon" width="450" height="600" style="border: 1px solid #73B9FF"/> -->*}
+		            <img src={$node.data_map.pdf_preview.content[original].full_path|ezroot()} width="450" height="600" style="border: 1px solid #73B9FF"/>
 		        </a>
 		    </div>
 		    <div class="col-xs-7">
@@ -393,8 +396,8 @@
 						  		</tr>
 						  	{/if}
 					  		<tr>
-					  			{def arrayTest = $sedeAzienda.data_map.tipo.content|explode( ' ' )}
-					  			{def checkWord = false}
+					  			{def $arrayTest = $sedeAzienda.data_map.tipo.content|explode( ' ' )}
+					  			{def $checkWord = false}
 					  			{foreach $arrayTest as $itemWord}
 					  				{if gt($itemWord|count_chars(),14)}
 					  					{set checkWord = true}
@@ -452,7 +455,7 @@
 			             					if(true){
 												var longitude = {/literal}{$mapNode.data_map.geo.content.latitude}{literal};
 												var latitude = {/literal}{$mapNode.data_map.geo.content.longitude}{literal};
-												var address = "{/literal}<h2>{$mapNode.data_map.tipo.content|shorten(25)}</h2><h3>{$mapNode.data_map.indirizzo.content|shorten(25)|explode('"')|implode("'")}<br/>{$mapNode.data_map.comune.content|shorten(25)}</h3>{literal}";
+												var address = '{/literal}<h2>{$mapNode.data_map.tipo.content|shorten(25)}</h2><h3>{$mapNode.data_map.indirizzo.content|shorten(25)}<br/>{$mapNode.data_map.comune.content|shorten(25)}</h3>{literal}';
 												{/literal}
 													{switch match = $mapNode.data_map.tipo.content}
 														{case match = 'Sede legale'}
