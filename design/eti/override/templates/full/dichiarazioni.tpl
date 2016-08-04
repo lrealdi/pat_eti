@@ -156,8 +156,8 @@
                     "builder":{
                         "query": mainQuery
                     },
-                    "datatable":{
-                        "ajax": {
+                    "datatable":{                        
+						"ajax": {
                             url: endpoints.datatable
                         },
                         "columns": [
@@ -240,7 +240,7 @@
                                     spinner = $('<span id="tab-spinner"></span>');
                                     spinnerContainer.append(spinner);
                                 }
-                                spinner.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>');
+                                spinner.html('<i class="fa fa-circle-o-notch fa-spin fa-fw"></i>');								
 								tools.loadMarkersInMap(query, function(data){
                                     spinner.html(' ('+data.features.length+')');
                                 });
@@ -318,6 +318,13 @@
 
             // carica jquery datatable
             datatable.loadDataTable();
+			
+			$('.dataTables_filter input').unbind().attr('placeholder','Premi invio per cercare');
+			$('.dataTables_filter input').bind('keyup', function(e) {		  
+			  if(e.keyCode == 13) {
+				datatable.datatable.search(this.value).draw();
+			  }
+			}); 
 
             // popola il form delle faccette
             var form = $('<form class="form">');
