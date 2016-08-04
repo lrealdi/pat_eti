@@ -17,7 +17,7 @@
         {set $ente_filter = $ente_filter|append($ente_related.contentobject_id)}
     {/foreach}
     {if count($ente_filter)}
-        {set $ente_filter_string = concat(' and elenco_ente_iscrizione.id in [',$ente_filter|implode(','), ']')}
+        {set $ente_filter_string = concat(' and raw[extra_ente____s] in [',$ente_filter|implode(','), ']')}
         {set $ente_filter_string2 = concat(' and id in [',$ente_filter|implode(','), ']')}
     {/if}
 {/if}
