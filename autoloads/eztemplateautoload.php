@@ -11,4 +11,3 @@ $eZTemplateOperatorArray[] = array( 'script' => 'extension/pat_eti/autoloads/eti
 $eZTemplateOperatorArray[] = array( 'script' => 'extension/pat_eti/autoloads/distanzageo.php',
 									'class' => 'DistanzaGeo',
 									'operator_names' => array( 'distanzageo' ) );
-

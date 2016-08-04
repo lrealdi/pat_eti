@@ -22,7 +22,7 @@
             }
         };
 
-        var settings = $.extend({}, defaults, defaults);
+        var settings = $.extend({}, defaults, options);
 
         var map, markers, userMarker, markerBuilder, lastMapQuery;
 
@@ -281,7 +281,7 @@
         };
 
         var geoJsonFindAll = function (query, cb, context) {
-            var features = [];
+			var features = [];
             var getSubRequest = function (query) {
                 geoJsonFind(query, function (data) {
                     parseSubResponse(data);
