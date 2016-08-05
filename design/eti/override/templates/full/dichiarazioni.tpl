@@ -42,7 +42,7 @@
     'plugins/chosen.jquery.js',
     'moment.min.js',
     'jquery.dataTables.js',
-    'jquery.opendataDataTable.js',
+    'jquery.patEtiDataTable.js',
     'jquery.patEtiTools.js',
     'leaflet.js',
     'leaflet.markercluster.js',
@@ -60,9 +60,8 @@
 	{rdelim};
 	var mainQuery = "{concat( 'classes [dichiarazione_impresa]', $ente_filter_string|wash(javascript))}";
     var geoMainQuery = 'classes [sede_azienda]';
+    var SessionCacheKey = "{concat($user.contentobject_id,'_dichiarazioni_impresa')}";
     {literal}
-    var SessionCacheKey = 'dichiarazioni_impresa';
-
     /**
      * Definizione delle faccette:
      *  - field: campo di ricerca in OCSQL vedi https://github.com/Opencontent/openservices/blob/master/doc/06-search-query.md
@@ -94,7 +93,7 @@
 		tools.settings('endpoint',endpoints);
 
         mainQuery += ' facets ['+tools.buildFacetsString(facets)+']';
-        console.log(mainQuery);
+        //console.log(mainQuery);
 
         /**
          * Inizializzazione della mappa
@@ -158,7 +157,7 @@
         /**
          * Inizialiazzaione di OpendataDataTable (wrapper di jquery datatable)
          */
-        datatable = $('.content-data').opendataDataTable({
+        datatable = $('.content-data').patEtiDataTable({
                     "builder":{
                         "query": mainQuery
                     },
@@ -207,6 +206,15 @@
                                 "targets": [2]
                             }
                         ]
+                    },
+                    "loadDatatableCallback": function(self){
+                        var input = $('.dataTables_filter input');
+                        input.unbind().attr('placeholder','Premi invio per cercare');
+                        input.bind('keyup', function(e) {
+                            if(e.keyCode == 13) {
+                                self.datatable.search(this.value).draw();
+                            }
+                        });
                     }
                 })
                 .on('xhr.dt', function ( e, settings, json, xhr ) {
@@ -254,7 +262,7 @@
                         }
                     });
                 })
-                .data('opendataDataTable');
+                .data('patEtiDataTable');
 
         // carica i parametrtri di ricerca salvati in sessionStorage
         if (sessionStorage.getItem(SessionCacheKey)) {
@@ -324,13 +332,6 @@
 
             // carica jquery datatable
             datatable.loadDataTable();
-			
-			$('.dataTables_filter input').unbind().attr('placeholder','Premi invio per cercare');
-			$('.dataTables_filter input').bind('keyup', function(e) {		  
-			  if(e.keyCode == 13) {
-				datatable.datatable.search(this.value).draw();
-			  }
-			}); 
 
             // popola il form delle faccette
             var form = $('<form class="form">');
