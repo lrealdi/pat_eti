@@ -37,7 +37,7 @@
         };
 
     // The actual plugin constructor
-    function OpendataDataTable(element, options) {
+    function PatEtiDataTable(element, options) {
         this.element = element;
         this.settings = $.extend(true, {}, defaults, options);
         this._defaults = defaults;
@@ -47,7 +47,7 @@
         this.init();
     }
 
-    $.extend(OpendataDataTable.prototype, {
+    $.extend(PatEtiDataTable.prototype, {
         init: function () {
             //this.loadDataTable();
         },
@@ -86,7 +86,7 @@
     $.fn[pluginName] = function (options) {
         return this.each(function () {
             if (!$.data(this, pluginName)) {
-                $.data(this, pluginName, new OpendataDataTable(this, options));
+                $.data(this, pluginName, new PatEtiDataTable(this, options));
             }
         });
     };
