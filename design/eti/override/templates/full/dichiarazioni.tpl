@@ -3,7 +3,8 @@
     {include uri=$openpa.content_tools.template}
 {/if}
 
-{def $ente_filter_string = ''
+{def $enti = array()
+     $ente_filter_string = ''
      $ente_filter_string2 = ''}
 {def $user=fetch( 'user', 'current_user' )}
 
@@ -12,16 +13,21 @@
     {set $user_ente_appartenenza_relation_list = $user.contentobject.data_map.ente_appartenenza.content.relation_list}
 {/if}
 {if count($user_ente_appartenenza_relation_list)}
-    {def $ente_filter = array()}
+    {def $ente_filter = array() $ente_filter_name = array()}
     {foreach $user.contentobject.data_map.ente_appartenenza.content.relation_list as $ente_related}
-        {set $ente_filter = $ente_filter|append($ente_related.contentobject_id)}
+        {def $ente = fetch(content,object,hash(object_id, $ente_related.contentobject_id))}
+        {if $ente}
+            {set $enti = $enti|append($ente)}
+            {set $ente_filter = $ente_filter|append($ente_related.contentobject_id)}
+            {set $ente_filter_name = $ente_filter_name|append( concat('"',$ente.data_map.ente.content|explode("'")|implode("\'"),'"') )}
+        {/if}
+        {undef $ente}
     {/foreach}
     {if count($ente_filter)}
-        {set $ente_filter_string = concat(' and raw[extra_ente____s] in [',$ente_filter|implode(','), ']')}
+        {set $ente_filter_string = concat(' and raw[extra_ente____s] in [',$ente_filter_name|implode(','), ']')}
         {set $ente_filter_string2 = concat(' and id in [',$ente_filter|implode(','), ']')}
     {/if}
 {/if}
-{def $enti = api_search(concat( 'classes [ente]', $ente_filter_string2, ' sort [name=>asc]') )}
 
 
 {ezcss_require( array(
@@ -45,16 +51,15 @@
 ))}
 
 <script type="text/javascript" language="javascript" class="init">
-	var endpoints = {ldelim}
+    var endpoints = {ldelim}
 		geo: "{'/etiexport/api/geo/search/'|ezurl(no)}/",
 		search: "{'/etiexport/api/content/search/'|ezurl(no)}/",
 		class: "{'/etiexport/api/classes/'|ezurl(no)}/",
 		root: "{'/'|ezurl(no)}/",
 		datatable: "{'/etiexport/api/datatable/search/'|ezurl(no)}/"
 	{rdelim};
-	var mainQuery = "{concat( 'classes [dichiarazione_impresa]', $ente_filter_string)}";
+	var mainQuery = "{concat( 'classes [dichiarazione_impresa]', $ente_filter_string|wash(javascript))}";
     var geoMainQuery = 'classes [sede_azienda]';
-    //console.log(mainQuery);
     {literal}
     var SessionCacheKey = 'dichiarazioni_impresa';
 
@@ -89,6 +94,7 @@
 		tools.settings('endpoint',endpoints);
 
         mainQuery += ' facets ['+tools.buildFacetsString(facets)+']';
+        console.log(mainQuery);
 
         /**
          * Inizializzazione della mappa
@@ -427,12 +433,12 @@
                             <select name="SelectDrawEnte" class="form-control">
                                 <option value=""> - Seleziona un ente</option>
                                 <option value="custom">  - oppure digita un indirizzo</option>
-                                {foreach $enti.searchHits as $ente}
-                                    <option value="{$ente.metadata.id}"
-                                            data-latitude="{$ente.data['ita-IT'].geo.latitude}"
-                                            data-longitude="{$ente.data['ita-IT'].geo.longitude}"
-                                            data-range="{$ente.data['ita-IT'].km_range_interesse}">
-                                        {$ente.data['ita-IT'].ente|wash()}
+                                {foreach $enti as $ente}
+                                    <option value="{$ente.id}"
+                                            data-latitude="{$ente.data_map.geo.content.latitude}"
+                                            data-longitude="{$ente.data_map.geo.content.longitude}"
+                                            data-range="{$ente.data_map.km_range_interesse.content}">
+                                        {$ente.data_map.ente.content|wash()}
                                     </option>
                                 {/foreach}
                             </select>
