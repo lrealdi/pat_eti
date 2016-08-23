@@ -247,7 +247,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['indirizzo'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Comune sede legale" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -256,7 +256,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['comune'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Provincia sede legale" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -265,7 +265,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['provincia'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "CAP sede legale" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -274,7 +274,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['cap'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
 
             "Indirizzo sede operativa/amministrativa (se diversa da quella legale)" => function ($data, $item) {
@@ -284,7 +284,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['indirizzo'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Comune sede operativa" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -293,7 +293,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['comune'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Provincia sede operativa" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -302,7 +302,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['provincia'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "CAP sede operativa" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -311,7 +311,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['cap'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
 
             "Indirizzo dello stabilimento" => function ($data, $item) {
@@ -321,7 +321,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['indirizzo'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Comune stabilimento" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -330,7 +330,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['comune'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Provincia stabilimento" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -339,7 +339,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['provincia'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "CAP stabilimento" => function ($data, $item) {
                 $sedi = self::getSedi($data, $item);
@@ -348,7 +348,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['cap'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
 
             "Telefono" => function ($data, $item) {
@@ -381,7 +381,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['indirizzo'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Comune consorzio" => function ($data, $item) {
                 $sedi = self::getSediConsorzio($data, $item);
@@ -390,7 +390,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['comune'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "Provincia consorzio" => function ($data, $item) {
                 $sedi = self::getSediConsorzio($data, $item);
@@ -399,7 +399,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['provincia'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "CAP consorzio" => function ($data, $item) {
                 $sedi = self::getSediConsorzio($data, $item);
@@ -408,7 +408,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $sede['cap'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
             "L'impresa risulta essere un consorzio" => function ($data, $item) {
                 return $data['consorzio_aderente_consorzio_valore'] == 2 ? 'SI' : 'NO';
@@ -1111,7 +1111,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $attivita['name']['ita-IT'];
                 }
 
-                return implode("\n", $result);
+                return implode("\n", array_unique($result));
             },
         );
     }
