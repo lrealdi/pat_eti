@@ -399,6 +399,14 @@
                 }, this);
             }
         });
+
+        var exportButton = $('#export');
+        exportButton.bind('click', function(e){
+            var query = decodeURIComponent(datatable.buildQuery());
+            var parts = query.split('facets');
+            window.location = '/etiexport/eti_list_export/?query='+parts[0];
+            e.preventDefault();
+        });
     });
 
     {/literal}
@@ -423,6 +431,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#table">Dati</a></li>
             <li><a data-toggle="tab" href="#geo">Mappa delle sedi</a></li>
+            <li class="pull-right"><a id="export" class="btn btn-success" href="#">Esporta lista</a></li>
         </ul>
         <div class="tab-content">
             <div id="table" class="tab-pane active"><div class="content-data"></div></div>
