@@ -47,13 +47,9 @@
 	<div class="tab-content">
 		<div class="tab-pane" id="tab-impresa">
 		    <div class="col-xs-5">
-		    	<!-- {$node.data_map.pdf_preview.content|attribute(show)} -->
-		    	<br/>
-		        <a href={concat("content/download/",$pdf_obj.id,"/",$pdf_obj.data_map.pdf.id,"/file/",$pdf_obj.data_map.pdf.content.original_filename)|ezurl} target="_blank">
-		            {*<!-- <img src={'icona_pdf.gif'|ezimage(double)} alt="Pdf icon" align="center" style="border: 1px solid #73B9FF"/>&nbsp;Scarica il modulo pdf --> 
-		            <!-- <img src={'pdf-image.png'|ezimage(double)} alt="Pdf icon" width="450" height="600" style="border: 1px solid #73B9FF"/> -->*}
-		            <img src={$node.data_map.pdf_preview.content[original].full_path|ezroot()} width="450" height="600" style="border: 1px solid #73B9FF"/>
-		        </a>
+				<p style="margin: 20px 0">
+					{attribute_view_gui attribute=$node.data_map.pdf_preview image_class=original href=concat("content/download/",$pdf_obj.id,"/",$pdf_obj.data_map.pdf.id,"/file/",$pdf_obj.data_map.pdf.content.original_filename)|ezurl}
+				</p>
 		    </div>
 		    <div class="col-xs-7">
 				<div class="panel panel-default">
