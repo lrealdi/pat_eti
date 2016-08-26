@@ -404,7 +404,12 @@
         exportButton.bind('click', function(e){
             var query = decodeURIComponent(datatable.buildQuery());
             var parts = query.split('facets');
-            window.location = '/etiexport/eti_list_export/?query='+parts[0];
+            var exportQuery = parts[0];
+            var search = $('.dataTables_filter input').val();
+            if (search.length > 0){
+            	exportQuery = 'q = '+search+' '+exportQuery;
+            }
+            window.location = '/etiexport/eti_list_export/?query='+exportQuery;
             e.preventDefault();
         });
     });
