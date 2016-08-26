@@ -56,7 +56,7 @@ try {
                     $target = eZSys::cacheDirectory() . "/temp/" . $imageName;
                     $cmd = "$executableConvert -density 300 {$filePath}[0] $target";
                     $out = shell_exec($cmd);
-                    //$cli->notice($cmd);
+                    $cli->notice($cmd);
                     //$cli->notice($out);
                     if (file_exists($target)){
                         $dataMap['pdf_preview']->fromString($target);
