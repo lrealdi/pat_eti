@@ -245,6 +245,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede legale'] as $sede) {
                     $result[] = $sede['indirizzo'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -254,6 +255,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede legale'] as $sede) {
                     $result[] = $sede['comune'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -263,6 +265,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede legale'] as $sede) {
                     $result[] = $sede['provincia'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -272,6 +275,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede legale'] as $sede) {
                     $result[] = $sede['cap'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -282,6 +286,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede amministrativa'] as $sede) {
                     $result[] = $sede['indirizzo'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -291,6 +296,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede amministrativa'] as $sede) {
                     $result[] = $sede['comune'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -300,6 +306,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede amministrativa'] as $sede) {
                     $result[] = $sede['provincia'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -309,6 +316,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede amministrativa'] as $sede) {
                     $result[] = $sede['cap'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -319,6 +327,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Stabilimento'] as $sede) {
                     $result[] = $sede['indirizzo'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -328,6 +337,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Stabilimento'] as $sede) {
                     $result[] = $sede['comune'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -337,6 +347,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Stabilimento'] as $sede) {
                     $result[] = $sede['provincia'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -346,6 +357,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Stabilimento'] as $sede) {
                     $result[] = $sede['cap'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -379,6 +391,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede consorzio'] as $sede) {
                     $result[] = $sede['indirizzo'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -388,6 +401,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede consorzio'] as $sede) {
                     $result[] = $sede['comune'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -397,6 +411,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede consorzio'] as $sede) {
                     $result[] = $sede['provincia'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
@@ -406,6 +421,7 @@ class PatEtiDichiarazioneImpresaCsv
                 $result = array();
                 foreach ($sedi['Sede consorzio'] as $sede) {
                     $result[] = $sede['cap'];
+                    break;
                 }
 
                 return implode("\n", array_unique($result));
