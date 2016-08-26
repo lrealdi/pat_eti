@@ -1127,7 +1127,7 @@ class PatEtiDichiarazioneImpresaCsv
                     $result[] = $attivita['name']['ita-IT'];
                 }
 
-                return implode("\n", array_unique($result));
+                return implode("|", array_unique($result));
             },
         );
     }
