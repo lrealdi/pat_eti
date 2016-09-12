@@ -28,7 +28,7 @@ try {
     eZDir::mkdir(eZSys::cacheDirectory() . "/temp/");
 
     $imageINI = eZINI::instance('image.ini');
-    $executableConvert = $imageINI->variable('ImageMagick', 'ExecutablePath') . '/' . $imageINI->variable('ImageMagick',
+    $executableConvert = $imageINI->variable('ImageMagick',
             'Executable');
 
     /** @var eZContentObjectTreeNode[] $dichiarazioni */
@@ -51,7 +51,7 @@ try {
                 $filePath = $pdf->attribute('filepath');
                 $fileHandler = eZClusterFileHandler::instance($filePath);
                 if ($fileHandler->exists()) {
-                    $fetchedFilePath = $fileHandler->fetchUnique();
+                    $fetchedFilePath = $fileHandler->fetch();
                     $imageName = str_replace('.pdf', '.jpg', basename($fetchedFilePath));
                     $target = eZSys::cacheDirectory() . "/temp/" . $imageName;
                     $cmd = "$executableConvert -density 300 {$filePath}[0] $target";
@@ -62,7 +62,6 @@ try {
                         $dataMap['pdf_preview']->fromString($target);
                         $dataMap['pdf_preview']->store();
                     }
-                    unlink($target);
                     $fileHandler->fileDeleteLocal($fetchedFilePath);
                 }
             }
